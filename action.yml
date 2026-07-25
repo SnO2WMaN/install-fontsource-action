@@ -22,8 +22,9 @@ runs:
       run: |
         wget -O ./$FONT_KEY.zip https://api.fontsource.org/v1/download/$FONT_KEY
         unzip ./$FONT_KEY.zip -d ./$FONT_KEY
-        rm -f ./$FONT_KEY/ttf/$FONT_KEY-[0-9]*
-        mv ./$FONT_KEY/ttf /usr/share/fonts/$FONT_KEY
+        rm -f ./$FONT_KEY/static/$FONT_KEY-[0-9]*.ttf
+        mkdir -p /usr/share/fonts/$FONT_KEY
+        mv ./$FONT_KEY/static/*.ttf /usr/share/fonts/$FONT_KEY/
         fc-cache -fv
         rm ./$FONT_KEY.zip
         rm -r ./$FONT_KEY
